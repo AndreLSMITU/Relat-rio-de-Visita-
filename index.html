@@ -1057,65 +1057,91 @@
                 </div>
 
                 <script>
-                    function validateAndPrint() {
-                        // Seleciona todos os inputs e selects obrigatórios em todas as etapas
-                        const requiredFields = document.querySelectorAll('.required + input, .required + select, .required input, .required select');
-                        let missingFields = [];
+    // Variável para controlar se a impressão foi iniciada pelo botão
+    let printAllowed = false;
 
-                        // Verifica cada campo obrigatório
-                        requiredFields.forEach(function(field) {
-                            // Verifica se o campo está habilitado e se está vazio
-                            if (!field.disabled && field.value.trim() === '') {
-                                field.classList.add('error-border');
-                                missingFields.push(field.previousElementSibling.textContent.replace(" *", ""));
-                            } else {
-                                field.classList.remove('error-border');
-                            }
-                        });
+    // Bloqueia a impressão padrão (como Ctrl+P) e desconfigura a página se não for permitido
+    window.addEventListener('beforeprint', function(event) {
+        if (!printAllowed) {
+            alert('Por favor, utilize o botão "Imprimir Relatório" para imprimir o documento.');
+            document.body.innerHTML = "<h1>Impressão bloqueada</h1>";  // Desconfigura a página para impedir impressão
+            setTimeout(function() {
+                window.location.reload();  // Recarrega a página após alguns segundos
+            }, 1000);
+            event.preventDefault();  // Cancela o evento de impressão
+        }
+    });
 
-                        // Campos que podem ser desabilitados com base em outras seleções
-                        const intercompanyFields = ['limite_intercompany', 'taxa_intercompany', 'prazo_intercompany', 'garantia_intercompany'];
-                        const fomentoFields = ['limite_fomento', 'taxa_fomento', 'prazo_fomento', 'garantia_fomento'];
-                        const duplicataFields = ['DP_performada', 'limite_duplicata', 'tranche_DP', 'taxa_DP'];
-                        const escrowFields = ['limite_escrow', 'taxa_escrow', 'prazo_escrow', 'garantia_escrow'];
-                        const consultoriaFields = ['consultoria_qual', 'data_entrada_consultoria', 'tempo_contrato'];
-                        const aprovacaoFields = ['razao_social', 'limite_pleiteado', 'pmrv', 'forma_pagamento'];
-                        const sazonalidadeFields = ['periodo_sazonal'];
+    // Adiciona um evento para capturar o comando de impressão padrão do navegador e cancelar
+    window.addEventListener('keydown', function(event) {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'p') {
+            event.preventDefault();
+            alert('Por favor, utilize o botão "Imprimir Relatório" para imprimir o documento.');
+        }
+    });
 
-                        // Função para verificar campos que podem estar desabilitados
-                        function checkConditionalFields(fieldsArray) {
-                            fieldsArray.forEach(function(fieldId) {
-                                const field = document.getElementById(fieldId);
-                                // Verifica se o campo existe, se está habilitado, e se está vazio
-                                if (field && !field.disabled && field.value.trim() === '') {
-                                    field.classList.add('error-border');
-                                    missingFields.push(field.previousElementSibling.textContent.replace(" *", ""));
-                                } else if (field) {
-                                    field.classList.remove('error-border');
-                                }
-                            });
-                        }
+    function validateAndPrint() {
+        // Seleciona todos os inputs e selects obrigatórios em todas as etapas
+        const requiredFields = document.querySelectorAll('.required + input, .required + select, .required input, .required select');
+        let missingFields = [];
 
-                        // Verificar campos adicionais condicionais
-                        checkConditionalFields(intercompanyFields);
-                        checkConditionalFields(fomentoFields);
-                        checkConditionalFields(duplicataFields);
-                        checkConditionalFields(escrowFields);
-                        checkConditionalFields(consultoriaFields);
-                        checkConditionalFields(aprovacaoFields);
-                        checkConditionalFields(sazonalidadeFields);
+        // Verifica cada campo obrigatório
+        requiredFields.forEach(function(field) {
+            // Verifica se o campo está habilitado e se está vazio
+            if (!field.disabled && field.value.trim() === '') {
+                field.classList.add('error-border');
+                missingFields.push(field.previousElementSibling.textContent.replace(" *", ""));
+            } else {
+                field.classList.remove('error-border');
+            }
+        });
 
-                        // Mostrar alerta se houver campos faltando
-                        if (missingFields.length > 0) {
-                            alert('Por favor, preencha os seguintes campos:\n' + missingFields.join('\n'));
-                        } else {
-                            // Se todos os campos obrigatórios estiverem preenchidos, permitir a impressão
-                            window.print();
-                        }
-                    }
-                </script>
+        // Campos que podem ser desabilitados com base em outras seleções
+        const intercompanyFields = ['limite_intercompany', 'taxa_intercompany', 'prazo_intercompany', 'garantia_intercompany'];
+        const fomentoFields = ['limite_fomento', 'taxa_fomento', 'prazo_fomento', 'garantia_fomento'];
+        const duplicataFields = ['DP_performada', 'limite_duplicata', 'tranche_DP', 'taxa_DP'];
+        const escrowFields = ['limite_escrow', 'taxa_escrow', 'prazo_escrow', 'garantia_escrow'];
+        const consultoriaFields = ['consultoria_qual', 'data_entrada_consultoria', 'tempo_contrato'];
+        const aprovacaoFields = ['razao_social', 'limite_pleiteado', 'pmrv', 'forma_pagamento'];
+        const sazonalidadeFields = ['periodo_sazonal'];
 
-                <div class="footer">
-                    <p>© 2024 Criado por André Luis Salles Martins. Todos os direitos reservados.</p>
-                </div>
+        // Função para verificar campos que podem estar desabilitados
+        function checkConditionalFields(fieldsArray) {
+            fieldsArray.forEach(function(fieldId) {
+                const field = document.getElementById(fieldId);
+                // Verifica se o campo existe, se está habilitado, e se está vazio
+                if (field && !field.disabled && field.value.trim() === '') {
+                    field.classList.add('error-border');
+                    missingFields.push(field.previousElementSibling.textContent.replace(" *", ""));
+                } else if (field) {
+                    field.classList.remove('error-border');
+                }
+            });
+        }
+
+        // Verificar campos adicionais condicionais
+        checkConditionalFields(intercompanyFields);
+        checkConditionalFields(fomentoFields);
+        checkConditionalFields(duplicataFields);
+        checkConditionalFields(escrowFields);
+        checkConditionalFields(consultoriaFields);
+        checkConditionalFields(aprovacaoFields);
+        checkConditionalFields(sazonalidadeFields);
+
+        // Mostrar alerta se houver campos faltando
+        if (missingFields.length > 0) {
+            alert('Por favor, preencha os seguintes campos:\n' + missingFields.join('\n'));
+        } else {
+            // Se todos os campos obrigatórios estiverem preenchidos, permitir a impressão
+            printAllowed = true;  // Permite a impressão
+            window.print();
+            printAllowed = false;  // Reseta a permissão após a impressão
+        }
+    }
+</script>
+
+<div class="footer">
+    <p>© 2024 Criado por André Luis Salles Martins. Todos os direitos reservados.</p>
+</div>
+
 
