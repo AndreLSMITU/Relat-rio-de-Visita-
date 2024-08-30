@@ -896,15 +896,6 @@
                                 <label for="demais_pleito" style="display: inline-block; width: 150px; margin-top: 20px;">Demais Pleito?</label>
                                 <input type="text" id="demais_pleito" class="content1" style="width: 200px; display: inline-block;">
 
-                                <!-- Float das Operações -->
-                                <label for="float_operacoes" style="display: inline-block; width: 150px;">Float das Operações?</label>
-                                <select id="float_operacoes" class="content1" style="width: 200px; display: inline-block;">
-                                    <option value="">Selecione...</option>
-                                    <option value="D+1">D+1</option>
-                                    <option value="D+2">D+2</option>
-                                    <option value="D+3">D+3</option>
-                                </select>
-
                             <script>
                                 function verificarDescontoEscrow() {
                                     var descontoEscrow = document.getElementById("desconto_escrow").value;
@@ -959,7 +950,7 @@
 
                                  <label for="taxa_intercompany" style="display: inline-block; width: 150px;">Taxa da Intercompany</label>
                                  <input type="text" id="taxa_intercompany" class="content1" style="width: 200px; display: inline-block;" disabled>
-                                 
+
                                  <label for="sacado_intercompany" style="display: inline-block; width: 150px;">Sacado da Intercompany?</label>
                                 <input type="text" id="sacado_intercompany" class="content1" style="width: 200px; display: inline-block;"disabled>
 
@@ -982,7 +973,7 @@
 
                                  <label for="taxa_fomento" style="display: inline-block; width: 150px;">Taxa do Fomento</label>
                                  <input type="text" id="taxa_fomento" class="content1" style="width: 200px; display: inline-block;" disabled>
-                                 
+
                                  <label for="destinacao_fomento" style="display: inline-block; width: 150px;">Destinação do Fomento?</label>
                                  <input type="text" id="destinacao_fomento" class="content1" style="width: 200px; display: inline-block;"disabled>
 
@@ -992,17 +983,6 @@
                                  <label for="garantia_fomento" style="display: inline-block; width: 150px;">Garantia?</label>
                                  <input type="text" id="garantia_fomento" class="content1" style="width: 200px; display: inline-block;" disabled>
 
-                                 <!-- Custo DP -->
-                                 <label for="custo_dp" style="display: inline-block; width: 150px;">Custo DP?</label>
-                                 <input type="text" id="custo_dp" class="content1" style="width: 200px; display: inline-block;">
-
-                                 <!-- TED -->
-                                 <label for="ted" style="display: inline-block; width: 150px;">TED</label>
-                                 <input type="text" id="ted" class="content1" style="width: 200px; display: inline-block;">
-
-                                 <!-- TAC -->
-                                 <label for="tac" style="display: inline-block; width: 150px;">TAC</label>
-                                 <input type="text" id="tac" class="content1" style="width: 200px; display: inline-block;">
                              </div>
 
                              <script>
@@ -1058,7 +1038,33 @@
                                      }
                                  }
                              </script>
+                            
+                            <!-- Título para a nova seção -->
+                            <div class="tarifa-section required" style="margin-top: 20px;">
+                            <!-- Título para a nova seção -->
+                            <div class="tarifa-section required" style="margin-top: 20px;">
+                                <h3 style="margin-bottom: 20px; color: #333; font-size: 25px; text-decoration: underline;">Tarifas</h3>
 
+                                <!-- Float das Operações -->
+                                    <label for="float_operacoes" style="display: inline-block; width: 150px;">Float das Operações?</label>
+                                    <select id="float_operacoes" class="content1" style="width: 200px; display: inline-block;" required>
+                                        <option value="">Selecione...</option>
+                                        <!-- Adicionar opções aqui -->
+                                    </select>
+
+                                    <!-- Custo DP -->
+                                    <label for="custo_dp" style="display: inline-block; margin-left: 20px; width: 100px;">Custo DP?</label>
+                                    <input type="text" id="custo_dp" class="content1" style="width: 200px; display: inline-block;" required>
+
+                                    <!-- TED -->
+                                    <label for="ted" style="display: inline-block; margin-top: 10px; width: 150px;">TED</label>
+                                    <input type="text" id="ted" class="content1" style="width: 200px; display: inline-block;" required>
+
+                                    <!-- TAC -->
+                                    <label for="tac" style="display: inline-block; margin-left: 20px; margin-top: 10px; width: 100px;">TAC</label>
+                                    <input type="text" id="tac" class="content1" style="width: 200px; display: inline-block;" required>
+                             </div>
+                                </div>
 
                           </div>
                                 <h2>Fotos da Visita, por favor, anexar na POC</h2>
@@ -1153,5 +1159,3 @@
                 <div class="footer">
                     <p>© 2024 Criado por André Luis Salles Martins. Todos os direitos reservados.</p>
                 </div>
-
-
