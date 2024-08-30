@@ -812,7 +812,7 @@
                 </div>
             </div>
 
-        <!-- Etapa 11: Limite Pleiteado / Conclusão -->
+     <!-- Etapa 11: Limite Pleiteado / Conclusão -->
                         <h2>Limite Pleiteado / Conclusão</h2>
                         <div class="section" style="display: flex; flex-wrap: wrap;">
 
@@ -892,9 +892,6 @@
 
                             <label for="garantia" style="display: inline-block; width: 150px;">Garantia?</label>
                             <input type="text" id="garantia" class="content1" style="width: 200px; display: inline-block;" disabled>
-                                <!-- Demais Pleito -->
-                                <label for="demais_pleito" style="display: inline-block; width: 150px; margin-top: 20px;">Demais Pleito?</label>
-                                <input type="text" id="demais_pleito" class="content1" style="width: 200px; display: inline-block;">
 
                             <script>
                                 function verificarDescontoEscrow() {
@@ -1048,9 +1045,11 @@
                                 <!-- Float das Operações -->
                                     <label for="float_operacoes" style="display: inline-block; width: 150px;">Float das Operações?</label>
                                     <select id="float_operacoes" class="content1" style="width: 200px; display: inline-block;" required>
-                                        <option value="">Selecione...</option>
-                                        <!-- Adicionar opções aqui -->
-                                    </select>
+                                <option value="">Selecione...</option>
+                                    <option value="D+1">D+1</option>
+                                    <option value="D+2">D+2</option>
+                                    <option value="D+3">D+3</option>
+                                </select>
 
                                     <!-- Custo DP -->
                                     <label for="custo_dp" style="display: inline-block; margin-left: 20px; width: 100px;">Custo DP?</label>
@@ -1065,7 +1064,9 @@
                                     <input type="text" id="tac" class="content1" style="width: 200px; display: inline-block;" required>
                              </div>
                                 </div>
-
+                                <div class="section-title">Demais Pleito?</div>
+                                <textarea id="demais_pleito" class="content" placeholder="Preencha os demais pleitos caso tenha."></textarea>
+                            </div>
                           </div>
                                 <h2>Fotos da Visita, por favor, anexar na POC</h2>
                                 <div class="buttons">
